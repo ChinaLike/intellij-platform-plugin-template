@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.github.ChinaLike.intellij-platform-plugin-template</id>
     <name>armsTemplate</name>
-    <vendor url="http://www.baidu.com">ChinaLike</vendor>
+    <vendor>ChinaLike</vendor>
 
     <description>
         一键创建 MVPArms 单个页面所需要的全部组件&lt;br /&gt;
@@ -9,10 +9,10 @@
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-<!--    <depends>org.jetbrains.android</depends>-->
-<!--    <depends>org.jetbrains.kotlin</depends>-->
-<!--    <depends>com.intellij.modules.java</depends>-->
-<!--    <depends>com.intellij.modules.platform</depends>-->
+    <depends>org.jetbrains.android</depends>
+    <depends>org.jetbrains.kotlin</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.chinalike.armstemplate.services.MyApplicationService"/>
