@@ -3,33 +3,28 @@ package other.src.app_package
 import other.ArmsPluginTemplateProviderImpl
 import other.commonAnnotation
 import other.convertName
+import other.moduleName
 
 fun armsFragment(isKt: Boolean, provider: ArmsPluginTemplateProviderImpl) = if (isKt) armsFragmentKt(provider) else armsFragmentJava(provider)
 
 private fun armsFragmentKt(provider: ArmsPluginTemplateProviderImpl) = """
 package ${provider.fragmentPackageName.value}
-import androidx.fragment.app.Fragment
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import import com.tsy.commonsdk.base.fragment.BaseFragment
+import ${provider.appPackageName.value}.base.fragment.Base${moduleName(provider.appPackageName.value)}Fragment
 import com.jess.arms.di.component.AppComponent
 import ${provider.componentPackageName.value}.Dagger${provider.pageName.value}Component
 import ${provider.moudlePackageName.value}.${provider.pageName.value}Module
 import ${provider.contractPackageName.value}.${provider.pageName.value}Contract
 import ${provider.presenterPackageName.value}.${provider.pageName.value}Presenter
-import ${provider.appPackageName.value}.R
 import ${provider.appPackageName.value}.databinding.${convertName(provider)}
 
 ${commonAnnotation(provider)}
-class ${provider.pageName.value}Fragment : BaseFragment<${provider.pageName.value}Presenter,${convertName(provider)}>() , ${provider.pageName.value}Contract.View{
-    companion object {
-    fun newInstance():${provider.pageName.value}Fragment {
-        val fragment = ${provider.pageName.value}Fragment()
-        return fragment
-    }
-    }
+class ${provider.pageName.value}Fragment : Base${moduleName(provider.appPackageName.value)}Fragment<${provider.pageName.value}Presenter,${convertName(provider)}>() , ${provider.pageName.value}Contract.View{
+ 
     override fun setupFragmentComponent(appComponent:AppComponent) {
         Dagger${provider.pageName.value}Component //如找不到该类,请编译一下项目
                 .builder()
@@ -49,6 +44,11 @@ class ${provider.pageName.value}Fragment : BaseFragment<${provider.pageName.valu
     override fun initBindingData(savedInstanceState: Bundle?) {
 
     }
+    
+    override fun getUmengPageName(): String? {
+        return "${provider.pageName.value}Fragment"
+    }
+    
 }
     
 """
@@ -56,29 +56,23 @@ class ${provider.pageName.value}Fragment : BaseFragment<${provider.pageName.valu
 
 fun armsFragmentJava(provider: ArmsPluginTemplateProviderImpl) = """
 package ${provider.fragmentPackageName.value};
-import androidx.fragment.app.Fragment;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import import com.tsy.commonsdk.base.fragment.BaseFragment;
+import ${provider.appPackageName.value}.base.fragment.Base${moduleName(provider.appPackageName.value)}Fragment;
 import com.jess.arms.di.component.AppComponent;
 import ${provider.componentPackageName.value}.Dagger${provider.pageName.value}Component;
 import ${provider.moudlePackageName.value}.${provider.pageName.value}Module;
 import ${provider.contractPackageName.value}.${provider.pageName.value}Contract;
 import ${provider.presenterPackageName.value}.${provider.pageName.value}Presenter;
-import ${provider.appPackageName.value}.R;
 import ${provider.appPackageName.value}.databinding.${convertName(provider)}
 
 ${commonAnnotation(provider)}
-class ${provider.pageName.value}Fragment extends BaseFragment<${provider.pageName.value}Presenter,${convertName(provider)}> implements ${provider.pageName.value}Contract.View{
-    
-    public static ${provider.pageName.value}Fragment newInstance() {
-        ${provider.pageName.value}Fragment fragment = new ${provider.pageName.value}Fragment();
-        return fragment;
-    }
+class ${provider.pageName.value}Fragment extends Base${moduleName(provider.appPackageName.value)}Fragment<${provider.pageName.value}Presenter,${convertName(provider)}> implements ${provider.pageName.value}Contract.View{
     
     @Override
     public void setupFragmentComponent(@NonNull AppComponent appComponent) {
@@ -93,13 +87,18 @@ class ${provider.pageName.value}Fragment extends BaseFragment<${provider.pageNam
     /**
      * 初始化视图
      */
-    override fun initBindingView(savedInstanceState: Bundle?) {
+    override void initBindingView(Bundle savedInstanceState) {
 
     }
     
-    override fun initBindingData(savedInstanceState: Bundle?) {
+    override void initBindingData(Bundle savedInstanceState) {
 
     }
+    
+    override String getUmengPageName() {
+        return "${provider.pageName.value}Fragment"
+    }
+    
 }
     
 """

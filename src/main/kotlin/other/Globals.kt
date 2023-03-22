@@ -49,3 +49,20 @@ fun convertNameString(name: String): String {
     }
     return result
 }
+
+/**
+ * 获取模块名
+ */
+fun moduleName(appPackageName: String): String {
+    if (appPackageName.contains(".")) {
+        val name = appPackageName.split(".")
+        val size = name.size
+        return if (size > 0) {
+            val moduleName = name[size - 1]
+            "${moduleName[0].uppercaseChar()}${moduleName.substring(1)}"
+        } else {
+            ""
+        }
+    }
+    return ""
+}
