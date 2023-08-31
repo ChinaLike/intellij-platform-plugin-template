@@ -11,19 +11,16 @@ private fun armsFragmentKt(provider: ArmsPluginTemplateProviderImpl) = """
 package ${provider.fragmentPackageName.value}
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import ${provider.appPackageName.value}.base.fragment.Base${moduleName(provider.appPackageName.value)}Fragment
+import ${provider.appPackageName.value}.base.Base${moduleName(provider.appPackageName.value)}Fragment
 import com.jess.arms.di.component.AppComponent
 import ${provider.componentPackageName.value}.Dagger${provider.pageName.value}Component
 import ${provider.moudlePackageName.value}.${provider.pageName.value}Module
 import ${provider.contractPackageName.value}.${provider.pageName.value}Contract
 import ${provider.presenterPackageName.value}.${provider.pageName.value}Presenter
-import ${provider.appPackageName.value}.databinding.${convertName(provider)}
+import ${provider.appPackageName.value}.databinding.${convertName(provider,false)}
 
 ${commonAnnotation(provider)}
-class ${provider.pageName.value}Fragment : Base${moduleName(provider.appPackageName.value)}Fragment<${provider.pageName.value}Presenter,${convertName(provider)}>() , ${provider.pageName.value}Contract.View{
+class ${provider.pageName.value}Fragment : Base${moduleName(provider.appPackageName.value)}Fragment<${provider.pageName.value}Presenter,${convertName(provider,false)}>() , ${provider.pageName.value}Contract.View{
  
     override fun setupFragmentComponent(appComponent:AppComponent) {
         Dagger${provider.pageName.value}Component //如找不到该类,请编译一下项目
@@ -63,16 +60,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import ${provider.appPackageName.value}.base.fragment.Base${moduleName(provider.appPackageName.value)}Fragment;
+import ${provider.appPackageName.value}.base.Base${moduleName(provider.appPackageName.value)}Fragment;
 import com.jess.arms.di.component.AppComponent;
 import ${provider.componentPackageName.value}.Dagger${provider.pageName.value}Component;
 import ${provider.moudlePackageName.value}.${provider.pageName.value}Module;
 import ${provider.contractPackageName.value}.${provider.pageName.value}Contract;
 import ${provider.presenterPackageName.value}.${provider.pageName.value}Presenter;
-import ${provider.appPackageName.value}.databinding.${convertName(provider)}
+import ${provider.appPackageName.value}.databinding.${convertName(provider,false)}
 
 ${commonAnnotation(provider)}
-class ${provider.pageName.value}Fragment extends Base${moduleName(provider.appPackageName.value)}Fragment<${provider.pageName.value}Presenter,${convertName(provider)}> implements ${provider.pageName.value}Contract.View{
+class ${provider.pageName.value}Fragment extends Base${moduleName(provider.appPackageName.value)}Fragment<${provider.pageName.value}Presenter,${convertName(provider,false)}> implements ${provider.pageName.value}Contract.View{
     
     @Override
     public void setupFragmentComponent(@NonNull AppComponent appComponent) {

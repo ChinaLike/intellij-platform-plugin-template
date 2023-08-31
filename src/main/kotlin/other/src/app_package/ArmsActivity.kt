@@ -17,10 +17,10 @@ import ${provider.componentPackageName.value}.Dagger${provider.pageName.value}Co
 import ${provider.moudlePackageName.value}.${provider.pageName.value}Module
 import ${provider.contractPackageName.value}.${provider.pageName.value}Contract
 import ${provider.presenterPackageName.value}.${provider.pageName.value}Presenter
-import ${provider.appPackageName.value}.databinding.${convertName(provider)}
+import ${provider.appPackageName.value}.databinding.${convertName(provider,true)}
 
 ${commonAnnotation(provider)}
-class ${provider.pageName.value}Activity : Base${moduleName(provider.appPackageName.value)}Activity<${provider.pageName.value}Presenter,${convertName(provider)}>() , ${provider.pageName.value}Contract.View {
+class ${provider.pageName.value}Activity : Base${moduleName(provider.appPackageName.value)}Activity<${provider.pageName.value}Presenter,${convertName(provider,true)}>() , ${provider.pageName.value}Contract.View {
     
     override fun setupActivityComponent(appComponent: AppComponent) {
         Dagger${provider.pageName.value}Component
@@ -55,10 +55,10 @@ import ${provider.componentPackageName.value}.Dagger${provider.pageName.value}Co
 import ${provider.moudlePackageName.value}.${provider.pageName.value}Module;
 import ${provider.contractPackageName.value}.${provider.pageName.value}Contract;
 import ${provider.presenterPackageName.value}.${provider.pageName.value}Presenter;
-import ${provider.appPackageName.value}.databinding.${convertName(provider)};
+import ${provider.appPackageName.value}.databinding.${convertName(provider,true)};
 
 ${commonAnnotation(provider)}
-public class ${provider.pageName.value}Activity extends Base${moduleName(provider.appPackageName.value)}Activity<${provider.pageName.value}Presenter,${convertName(provider)}> implements ${provider.pageName.value}Contract.View {
+public class ${provider.pageName.value}Activity extends Base${moduleName(provider.appPackageName.value)}Activity<${provider.pageName.value}Presenter,${convertName(provider,true)}> implements ${provider.pageName.value}Contract.View {
     
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {

@@ -7,7 +7,7 @@ import java.util.regex.Pattern
 fun commonAnnotation(provider: ArmsPluginTemplateProviderImpl) = """
 /**
  * 
- * @author like 
+ * @author pang 
  * @date ${SimpleDateFormat("yyyy/MM/dd HH:mm").format(Date(System.currentTimeMillis()))}
  */
 """.trimIndent()
@@ -27,8 +27,9 @@ val armsAnnotation = """
  */
 """.trimIndent()
 
-fun convertName(provider: ArmsPluginTemplateProviderImpl) = """
-    ${convertNameString(provider.activityLayoutName.value)}Binding
+//${moduleName(provider.appPackageName.value)}
+fun convertName(provider: ArmsPluginTemplateProviderImpl,isActivity:Boolean) = """
+    ${convertNameString(if (isActivity) provider.activityLayoutName.value else provider.fragmentLayoutName.value)}Binding
 """.trimIndent()
 
 fun convertNameString(name: String): String {
