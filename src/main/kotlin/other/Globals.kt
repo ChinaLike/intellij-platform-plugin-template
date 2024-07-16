@@ -7,7 +7,7 @@ import java.util.regex.Pattern
 fun commonAnnotation(provider: ArmsPluginTemplateProviderImpl) = """
 /**
  * 
- * @author pang 
+ * @author ${System.getProperty("user.name")} 
  * @date ${SimpleDateFormat("yyyy/MM/dd HH:mm").format(Date(System.currentTimeMillis()))}
  */
 """.trimIndent()
